@@ -28,11 +28,11 @@ public class SequenceSetSizeMappingCountDistribution {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(sequenceSetFileName));
             String sequenceIndex = null;
             if((sequenceIndex = bufferedReader.readLine()) != null) {
-                ResultSet sequenceResultSet = statement.executeQuery("SELECT srna_sequence.length,srna_mapping_status.mapping_count FROM srna_sequence,srna_mapping_status WHERE srna_sequence.sequence_id=" + sequenceIndex + " AND srna_sequence.sequence_id=srna_mapping_status.sequence_id");
+                ResultSet sequenceResultSet = statement.executeQuery("SELECT srna_sequence.length,srna_mapping_status_refgen4.mapping_count FROM srna_sequence,srna_mapping_status_refgen4 WHERE srna_sequence.sequence_id=" + sequenceIndex + " AND srna_sequence.sequence_id=srna_mapping_status_refgen4.sequence_id");
                 if(sequenceResultSet.next()) {
                     sequenceCount++;
                     int sequenceLength = sequenceResultSet.getInt("srna_sequence.length");
-                    int mappingCount = sequenceResultSet.getInt("srna_mapping_status.mapping_count");
+                    int mappingCount = sequenceResultSet.getInt("srna_mapping_status_refgen4.mapping_count");
 
                     if((minSequenceLength == 0) || (minSequenceLength > sequenceLength)) {
                         minSequenceLength = sequenceLength;
@@ -78,11 +78,11 @@ public class SequenceSetSizeMappingCountDistribution {
             Statement statement = databaseConnection.getConnection().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             statement.setFetchSize(Integer.MIN_VALUE);
             
-            ResultSet sequenceResultSet = statement.executeQuery("SELECT srna_sequence.length,srna_mapping_status.mapping_count FROM srna_sequence,srna_mapping_status WHERE srna_sequence.length>=18 AND srna_sequence.length<=28 AND srna_sequence.sequence_id=srna_mapping_status.sequence_id");
+            ResultSet sequenceResultSet = statement.executeQuery("SELECT srna_sequence.length,srna_mapping_status_refgen4.mapping_count FROM srna_sequence,srna_mapping_status_refgen4 WHERE srna_sequence.length>=18 AND srna_sequence.length<=28 AND srna_sequence.sequence_id=srna_mapping_status_refgen4.sequence_id");
             while(sequenceResultSet.next()) {
                 sequenceCount++;
                 int sequenceLength = sequenceResultSet.getInt("srna_sequence.length");
-                int mappingCount = sequenceResultSet.getInt("srna_mapping_status.mapping_count");
+                int mappingCount = sequenceResultSet.getInt("srna_mapping_status_refgen4.mapping_count");
 
                 if((minSequenceLength == 0) || (minSequenceLength > sequenceLength)) {
                     minSequenceLength = sequenceLength;
