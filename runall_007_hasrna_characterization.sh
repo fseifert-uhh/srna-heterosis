@@ -13,8 +13,8 @@ java -jar ${TOOL_SRNA_LENGTH} -bootstrap 1000 -databaseUser ${DATABASE_USER} -da
 ### ha-sRNA mapping count analysis
 mkdir -p ${EXP7_PATH}/mapping_count_analysis
 
-java -jar ${TOOL_SRNA_MAPPING_COUNT} -databaseUser ${DATABASE_USER} -databasePassword ${DATABASE_PASSWORD} -filename ${EXP6_PATH}/association/mph_gy_pos_expr0.5_fc2.csv > ${EXP7_PATH}/mapping_count_analysis/pos_hasrna_mapping_count.csv
-java -jar ${TOOL_SRNA_MAPPING_COUNT} -databaseUser ${DATABASE_USER} -databasePassword ${DATABASE_PASSWORD} -filename ${EXP6_PATH}/association/mph_gy_neg_expr0.5_fc2.csv > ${EXP7_PATH}/mapping_count_analysis/neg_hasrna_mapping_count.csv
+java -jar ${TOOL_SRNA_MAPPING_COUNT} -databaseUser ${DATABASE_USER} -databasePassword ${DATABASE_PASSWORD} -fileName ${EXP6_PATH}/association/mph_gy_pos_expr0.5_fc2.csv > ${EXP7_PATH}/mapping_count_analysis/pos_hasrna_mapping_count.csv
+java -jar ${TOOL_SRNA_MAPPING_COUNT} -databaseUser ${DATABASE_USER} -databasePassword ${DATABASE_PASSWORD} -fileName ${EXP6_PATH}/association/mph_gy_neg_expr0.5_fc2.csv > ${EXP7_PATH}/mapping_count_analysis/neg_hasrna_mapping_count.csv
 
 ### ha-sRNA annotation mapping analysis
 mkdir -p ${EXP7_PATH}/annotation/mapping
