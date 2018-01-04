@@ -1,0 +1,118 @@
+package csvdatabaseinsertion;
+
+import java.sql.*;
+
+public class DatabaseConnection {
+    public DatabaseConnection(String serverHost, String serverPort, String userName, String passWord) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(ClassNotFoundException e) {}
+        
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://" + serverHost + ":" + serverPort, userName, passWord);
+            connectionActive = true;
+        }
+        catch(SQLException e) {
+            connectionActive = false;
+        }
+        
+        this.passWord = passWord;
+        this.serverHost = serverHost;
+        this.serverPort = serverPort;
+        this.userName = userName;
+    }
+
+    public DatabaseConnection(String serverHost, String serverPort, String databaseName, String userName, String passWord) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(ClassNotFoundException e) {}
+
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://" + serverHost + ":" + serverPort + "/" + databaseName, userName, passWord);
+            connectionActive = true;
+        }
+        catch(SQLException e) {
+            connectionActive = false;
+        }
+
+        this.databaseName = databaseName;
+        this.passWord = passWord;
+        this.serverHost = serverHost;
+        this.serverPort = serverPort;
+        this.userName = userName;
+    }
+
+    public void close() throws SQLException {
+        if(isActive()) {
+            connectionActive = false;
+            connection.close();
+        }
+    }
+
+    public boolean databaseExists(String databaseName) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = \"" + databaseName + "\"");
+        resultSet.last();
+        int resultCount = resultSet.getRow();
+        statement.close();
+
+        if(resultCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    public boolean databaseTableExists(String databaseTableName) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT " + databaseTableName + " FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = \"" + databaseName + "\"");
+        resultSet.last();
+        int resultCount = resultSet.getRow();
+        statement.close();
+
+        if(resultCount > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public boolean executeQuery(String databaseQuery, Statement statement) throws SQLException {
+        boolean executionStatus = false;
+
+        executionStatus = statement.execute(databaseQuery);
+
+        return executionStatus;
+    }
+
+    public boolean executeUpdate(String databaseQuery) throws SQLException {
+        int executionStatus = 0;
+
+        Statement statement = connection.createStatement();
+        executionStatus = statement.executeUpdate(databaseQuery);
+        statement.close();
+
+        return (executionStatus != Statement.EXECUTE_FAILED) ? true : false;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public boolean isActive() {
+        return connectionActive;
+    }
+    
+    private boolean connectionActive = false;
+
+    private Connection connection;
+
+    private String databaseName;
+    private String passWord;
+    private String serverHost;
+    private String serverPort;
+    private String userName;
+}

@@ -1,0 +1,6 @@
+experiments/003_cufflinks/GSM958906_B73_rep1/transcripts.gtf
+experiments/003_cufflinks/GSM958907_Mo17_rep1/transcripts.gtf
+experiments/003_cufflinks/GSM958908_B73_rep2/transcripts.gtf
+experiments/003_cufflinks/GSM958909_Mo17_rep2/transcripts.gtf
+experiments/003_cufflinks/GSM958910_Mo17_rep3/transcripts.gtf
+experiments/003_cufflinks/GSM958911_B73_rep3/transcripts.gtf

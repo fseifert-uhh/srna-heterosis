@@ -1,0 +1,97 @@
+###  Initialization of paths
+
+# Data directories
+extern ANNOTATION_DIR="data/annotation"
+extern DATABASE_DIR="data/database"
+extern GENOME_DIR="data/genome"
+extern MAP_DIR="data/genetic3_map"
+extern extern MIRNA_DIR="data/sequences/mirna"
+extern RRNA_DIR="data/sequences/rrna"
+extern SEQ_DIR="data/sequencing_data"
+extern TRNA_SEQUENCES_DIR="data/sequences/trna"
+
+# Reference genome data
+extern GENOME_FASTA=${GENOME_DIR}/"XYZ.fasta"
+
+# Annotation data
+extern GENE_GFF3=${ANNOTATION_DIR}/"XYZ.fasta"
+extern REPEAT_GFF3=${ANNOTATION_DIR}/"XYZ.fasta"
+
+# Sequence data
+extern MIRNA_FASTA=${MIRNA_DIR}/"XYZ.fasta"
+extern RRNA_FASTA=${RRNA_DIR}/"XYZ.fasta"
+extern TRNA_FASTA=${TRNA_DIR}/"XYZ.fasta"
+
+# Sequencing data
+extern SEQ_SRNA_DIR=${SEQ_DIR}/srna/
+extern SEQ_B73_MO17_SRNA_DIR=${SEQ_DIR}/regulski/srna/
+extern SEQ_B73_MO17_TRANSCRIPTOME_DIR=${SEQ_DIR}/regulski/transcriptome/
+
+# Experiment paths
+extern EXP1_PATH="001_sequencing_data_processing"
+extern EXP2_PATH="002_sequence_database_generation"
+extern EXP3_PATH="003_sequence_mapping"
+extern EXP4_PATH="004_srna_population_diversity"
+extern EXP5_PATH="005_srna_snp_mrna_comparison"
+extern EXP6_PATH="006_srna_association"
+extern EXP7_PATH="007_hasrna_characterization"
+extern EXP8_PATH="008_srna_cluster"
+extern EXP9_PATH="09_hasrna_rna_type_mapping"
+extern EXP10_PATH="010_recombination_rate"
+extern EXP11_PATH="011_b73_mo17_srna"
+extern EXP12_PATH="012_b73_mo17_transcriptome"
+extern EXP13_PATH="013_de_gene_hasrna_enrichment"
+
+# Tools
+extern TOOL_ANNOTATION_CLUSTER="src/SequenceSetAnnotationClusterRelationAnalysis/dist/SequenceSetAnnotationClusterRelationAnalysis.jar"
+extern TOOL_ANNOTATION_CLUSTER_GEN="src/DatabaseAnnotationClusterGeneration/dist/DatabaseAnnotationClusterGeneration.jar"
+extern TOOL_ANNOTATION_ANALYSIS="src/SequenceSetAnnotationAnalysis/dist/SequenceSetAnnotationAnalysis.jar"
+extern TOOL_ANNOTATION_SPECIFIC="src/SequenceSetAnnotationSpecificAnalysis/dist/SequenceSetAnnotationSpecificAnalysis.jar"
+extern TOOL_ANNOTATION_INTERSECT="src/SequenceSetAnnotationIntersectionAnalysis/dist/SequenceSetAnnotationIntersectionAnalysis.jar"
+extern TOOL_ANNOTATION_SUMMARY="src/AnnotationSmallRNASizeDistributionSummary/dist/AnnotationSmallRNASizeDistributionSummary.jar"
+extern TOOL_CLUSTER_READS="src/cluster_sequence_reads.R"
+extern TOOL_DB_CLUSTER_EXPRESSION="src/ClusterExpressionDatabaseInsertion/dist/ClusterExpressionDatabaseInsertion.jar"
+extern TOOL_DB_EXPRESSION_IMPORT="src/DatabaseExpressionDataInsertion/dist/DatabaseExpressionDataInsertion.jar"
+extern TOOL_DB_MAPPING_COUNT="src/DatabaseMappingCountDataInsertion/dist/DatabaseMappingCountDataInsertion.jar"
+extern TOOL_DB_SEQUENCE_IMPORT="src/DatabaseSequenceDataInsertion/dist/DatabaseSequenceDataInsertion.jar"
+extern TOOL_DB_SEQUENCE_EXPORT="src/ExtractExperimentSequenceReads/dist/ExtractExperimentSequenceReads.jar"
+extern TOOL_DB_SRNA_CLUSTER="src/SmallRNAClusterDatabaseInsertion/dist/SmallRNAClusterDatabaseInsertion.jar"
+extern TOOL_EXPRESSION_PATTERN="src/DifferentialInbredHybridExpressionRatioAnalysis/dist/DifferentialInbredHybridExpressionRatioAnalysis.jar"
+extern TOOL_EXPRESSION_TO_FASTA="src/SequenceExpressionNumberedSequenceFastaGenerator/dist/SequenceExpressionNumberedSequenceFastaGenerator.jar"
+extern TOOL_FASTA_MATCH_EXPRESSION_EXTRACT="src/ExtractFastaMatchingSequenceExpression/src/ExtractFastaMatchingSequenceExpression"
+extern TOOL_FASTA_MATCH_SEQUENCE_EXTRACT="src/FastaSequenceMatchExtract/dist/FastaSequenceMatchExtract.jar"
+extern TOOL_GENE_REGION_GFF="src/GeneRegionGFFExtractionConverter/dist/GeneRegionGFFExtractionConverter.jar"
+extern TOOL_GENOME_DISTRIBUTION="src/GenomeWindowSequenceDistributionZNormAnalysis/dist/GenomeWindowSequenceDistributionZNormAnalysis.jar"
+extern TOOL_GENOME_ENRICHMENT="src/GenomeWindowAssociatedSequenceLengthMappingDistributionBootstrapZNormAnalysis/dist/GenomeWindowAssociatedSequenceLengthMappingDistributionBootstrapZNormAnalysis.jar"
+extern TOOL_HASRNA_REGION_ENRICHMENT="src/BootstrapMappedSmallRNARegionEnrichmentAnalysis/src/BootstrapMappedSmallRNARegionEnrichmentAnalysis.jar"
+extern TOOL_ILLUMINA_PREPROCESS="src/IlluminaReadPreprocess/dist/IlluminaReadPreprocess.jar"
+extern TOOL_INBRED_DISTANCE="src/GenerateDistanceMatrixRelativeToLibrary/dist/GenerateDistanceMatrixRelativeToLibrary.jar"
+extern TOOL_MERGE_SEQUENCING_DATASETS="src/MergeSequencingDatasetReadCounts/dist/MergeSequencingDatasetReadCounts.jar"
+extern TOOL_MRNA_CORRELATION="src/HybridCharacteristicMicroarraySequenceCorrelationDatabase/dist/HybridCharacteristicMicroarraySequenceCorrelationDatabase.jar"
+extern TOOL_PCA_INBRED_DISTANCE="src/pca_srna_inbred_distance.R"
+extern TOOL_PER_MILLION_SCALING="src/PerMillionNormalization/dist/PerMillionNormalization.jar"
+extern TOOL_POPULATION_DIVERSITY="src/SmallRNAHeteroticGroupAnalysis/dist/SmallRNAHeteroticGroupAnalysis.jar"
+extern TOOL_QUANTILE_NORMALIZATION="src/QuantileNormalization/dist/QuantileNormalization.jar"
+extern TOOL_RECOMBINATION_RATE="src/recombination_rate_znorm.R"
+extern TOOL_REPEAT_ENRICHMENT="src/LibraryTransposableElementMappingSequenceLengthDatabaseBootstrapAnalysis/dist/LibraryTransposableElementMappingSequenceLengthDatabaseBootstrapAnalysis.jar"
+extern TOOL_SNP_CORRELATION="src/HybridCharacteristicSingleNucleotidePolymorphismAssociationDatabase/dist/HybridCharacteristicSingleNucleotidePolymorphismAssociationDatabase.jar"
+extern TOOL_SRNA_ASSOCIATION="src/HybridCharacteristicSequenceAssociationDatabase/dist/HybridCharacteristicSequenceAssociationDatabase.jar"
+extern TOOL_SRNA_CLUSTER="src/SmallRNAClusterGeneration/dist/SmallRNAClusterGeneration.jar"
+extern TOOL_SRNA_CLUSTER_ASSOCIATION="src/HybridCharacteristicClusterAssociationDatabase/dist/HybridCharacteristicClusterAssociationDatabase.jar"
+extern TOOL_SRNA_CORRELATION="src/HybridCharacteristicSequenceAssociationDatabase/dist/HybridCharacteristicSequenceAssociationDatabase.jar"
+extern TOOL_SRNA_LENGTH="src/SmallRNASizeDistributionBootstrap/dist/SmallRNASizeDistributionBootstrap.jar"
+extern TOOL_SRNA_LOWESS_GAM="src/hasrna_lowess_gam.R"
+extern TOOL_SRNA_MAPPING_COUNT="src/SequenceSetSizeMappingCountDistribution/dist/SequenceSetSizeMappingCountDistribution.jar"
+extern TOOL_SRNA_PERMUTATION="src/HybridCharacteristicPermutationPrediction/dist/HybridCharacteristicPermutationPrediction.jar"
+extern TOOL_SRNA_SUBSET_FASTA="src/SequenceSetFastaGeneration/dist/SequenceSetFastaGeneration.jar"
+extern TOOL_WINDOW_CLUSTER="src/DatabaseWindowClusterGeneration/dist/DatabaseWindowClusterGeneration.jar"
+
+### Settings
+
+# available RAM ressources
+extern MAX_RAM="32G"
+
+# MySQL settings
+extern DATABASE_USER="username"
+extern DATABASE_PASSWORD="password"
+
