@@ -2,7 +2,7 @@
 
 This project contains all scripts and Java programs used for bioinformatics analyses in the publication:
 
-> Seifert _et al._ (under review) Parental expression variation of small RNAs is negatively correlated with grain yield heterosis in a maize breeding population
+> Seifert _et al._ (2018) Parental expression variation of small RNAs is negatively correlated with grain yield heterosis in a maize breeding population. Frontiers in Plant Science, doi: 10.3389/fpls.2018.00013 
 
 ## Prerequisites
 ### Software
