@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import jsc.datastructures.PairedData;
-import jsc.regression.PearsonCorrelation;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
 public class HybridCharacteristicSequenceAssociationDatabase {
     public HybridCharacteristicSequenceAssociationDatabase(DatabaseLoginData databaseLoginData, MultipleTestingCorrectionMethod multipleTestingCorrectionMethod) throws SQLException {
@@ -301,10 +300,12 @@ public class HybridCharacteristicSequenceAssociationDatabase {
                 arrayIndex++;
             }
 
-            PearsonCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridBinaryDistance, hybridCharacteristicValues));
-            PearsonCorrelation euclideanDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridEuclideanDistance, hybridCharacteristicValues));
+            PearsonsCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+            double binaryDistanceCorrelationCoefficient = binaryDistanceHybridCharacteristicCorrelation.correlation(hybridBinaryDistance, hybridCharacteristicValues);
+            PearsonsCorrelation euclideanDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+            double euclideanDistanceCorrelationCoefficient = euclideanDistanceHybridCharacteristicCorrelation.correlation(hybridEuclideanDistance, hybridCharacteristicValues);
 
-            System.out.print(minExpressionThreshold + ";" + minFoldChangeThreshold + ";pos: " + inbredElementExpressionHashMap[0].size() + ";neg: " + inbredElementExpressionHashMap[1].size() + ";R(bin): " + binaryDistanceHybridCharacteristicCorrelation.getR() + ";R(eucl): " + euclideanDistanceHybridCharacteristicCorrelation.getR());
+            System.out.print(minExpressionThreshold + ";" + minFoldChangeThreshold + ";pos: " + inbredElementExpressionHashMap[0].size() + ";neg: " + inbredElementExpressionHashMap[1].size() + ";R(bin): " + binaryDistanceCorrelationCoefficient + ";R(eucl): " + euclideanDistanceCorrelationCoefficient);
         }
     }
     

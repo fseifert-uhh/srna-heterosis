@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import jsc.datastructures.PairedData;
-import jsc.regression.PearsonCorrelation;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -18,6 +16,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
 public class HybridCharacteristicSequenceCorrelationDatabase {
     public HybridCharacteristicSequenceCorrelationDatabase(DatabaseLoginData databaseLoginData, BreedingFactorial breedingFactorial) throws SQLException {
@@ -312,10 +311,12 @@ public class HybridCharacteristicSequenceCorrelationDatabase {
             System.out.println(hybridIndex + ";"  + hybridBinaryDistance[hybridIndex] + ";" + hybridEuclideanDistance[hybridIndex] + ";" + breedingFactorial.getHybridTraitCharacteristicValue(hybridIndex));
         }
         
-        PearsonCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridBinaryDistance, hybridTraitCharacteristicValues));
-        PearsonCorrelation euclideanDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridEuclideanDistance, hybridTraitCharacteristicValues));
+        PearsonsCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+        double binaryDistanceCorrelationCoefficient = binaryDistanceHybridCharacteristicCorrelation.correlation(hybridBinaryDistance, hybridTraitCharacteristicValues);
+        PearsonsCorrelation euclideanDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+        double euclideanDistanceCorrelationCoefficient = binaryDistanceHybridCharacteristicCorrelation.correlation(hybridEuclideanDistance, hybridTraitCharacteristicValues);
 
-        System.out.print(hybridExpressionElementData.getDifferentialFlagData().size() + ";" + binaryDistanceHybridCharacteristicCorrelation.getR() + ";" + euclideanDistanceHybridCharacteristicCorrelation.getR());
+        System.out.print(hybridExpressionElementData.getDifferentialFlagData().size() + ";" + binaryDistanceCorrelationCoefficient + ";" + euclideanDistanceCorrelationCoefficient);
     }
     
     public void testSequences(DatabaseLoginData databaseLoginData, HybridTraitCharacteristic hybridTraitCharacteristic, double expressionThreshold, double expressionFoldChangeThreshold, double differentialExpressionPvalueThreshold) throws SQLException {

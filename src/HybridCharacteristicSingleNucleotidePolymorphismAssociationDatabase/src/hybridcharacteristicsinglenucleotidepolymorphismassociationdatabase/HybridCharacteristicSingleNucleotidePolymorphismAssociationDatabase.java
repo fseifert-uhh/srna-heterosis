@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import jsc.datastructures.PairedData;
-import jsc.regression.PearsonCorrelation;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
 public class HybridCharacteristicSingleNucleotidePolymorphismAssociationDatabase {
     public HybridCharacteristicSingleNucleotidePolymorphismAssociationDatabase(DatabaseLoginData databaseLoginData, MultipleTestingCorrectionMethod multipleTestingCorrectionMethod) throws SQLException {
@@ -247,9 +246,10 @@ public class HybridCharacteristicSingleNucleotidePolymorphismAssociationDatabase
             arrayIndex++;
         }
         
-        PearsonCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridBinaryDistance, hybridCharacteristicValues));
+        PearsonsCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+        double binaryDistanceCorrelationCoefficient = binaryDistanceHybridCharacteristicCorrelation.correlation(hybridBinaryDistance, hybridCharacteristicValues);
 
-        System.out.print("pos" + inbredSingleNucleotidePolymorphismSequenceHashMap[0].size() + ";neg" + inbredSingleNucleotidePolymorphismSequenceHashMap[1].size() + ";" + binaryDistanceHybridCharacteristicCorrelation.getR());
+        System.out.print("pos" + inbredSingleNucleotidePolymorphismSequenceHashMap[0].size() + ";neg" + inbredSingleNucleotidePolymorphismSequenceHashMap[1].size() + ";" + binaryDistanceCorrelationCoefficient);
     }
     
     public void testSequences(DatabaseLoginData databaseLoginData, HybridCharacteristic hybridCharacteristic, double alphaError) throws SQLException {

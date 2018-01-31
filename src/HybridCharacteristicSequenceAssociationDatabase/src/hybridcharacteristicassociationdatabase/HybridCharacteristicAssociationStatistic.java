@@ -2,7 +2,7 @@ package hybridcharacteristicassociationdatabase;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import jsc.distributions.Binomial;
+import org.apache.commons.math3.distribution.BinomialDistribution;
 
 public class HybridCharacteristicAssociationStatistic {
     public HybridCharacteristicAssociationStatistic(HashMap<Integer,Double> hybridCharacteristicValueHashMap, int groupBalance) {
@@ -37,7 +37,7 @@ public class HybridCharacteristicAssociationStatistic {
 
         double probability = 1.0;
         if((lowCharacteristicDifferentialCount > 0) || (highCharacteristicDifferentialCount > 0)) {
-            Binomial binomialDistribution = new Binomial((highCharacteristicDifferentialCount + lowCharacteristicDifferentialCount), 0.5);
+            BinomialDistribution binomialDistribution = new BinomialDistribution((highCharacteristicDifferentialCount + lowCharacteristicDifferentialCount), 0.5);
 
             boolean positiveAssociation = true;
             int massIndexStart = highCharacteristicDifferentialCount;
@@ -51,7 +51,7 @@ public class HybridCharacteristicAssociationStatistic {
             
             probability = 0;
             for(int probabilityMassIndex = massIndexStart; probabilityMassIndex <= massIndexEnd; probabilityMassIndex++) {
-                probability += ((positiveAssociation ? 1 : -1) * binomialDistribution.pdf(probabilityMassIndex));
+                probability += ((positiveAssociation ? 1 : -1) * binomialDistribution.probability(probabilityMassIndex));
             }
         }
         

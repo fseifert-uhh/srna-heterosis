@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import jsc.datastructures.PairedData;
-import jsc.regression.PearsonCorrelation;
+import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
 public class HybridCharacteristicClusterAssociationDatabase {
     public HybridCharacteristicClusterAssociationDatabase(DatabaseLoginData databaseLoginData, MultipleTestingCorrectionMethod multipleTestingCorrectionMethod) throws SQLException {
@@ -260,10 +259,12 @@ public class HybridCharacteristicClusterAssociationDatabase {
             arrayIndex++;
         }
         
-        PearsonCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridBinaryDistance, hybridCharacteristicValues));
-        PearsonCorrelation euclideanDistanceHybridCharacteristicCorrelation = new PearsonCorrelation(new PairedData(hybridEuclideanDistance, hybridCharacteristicValues));
+        PearsonsCorrelation binaryDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+        double binaryDistanceCorrelationCoefficient = binaryDistanceHybridCharacteristicCorrelation.correlation(hybridBinaryDistance, hybridCharacteristicValues);
+        PearsonsCorrelation euclideanDistanceHybridCharacteristicCorrelation = new PearsonsCorrelation();
+        double euclideanDistanceCorrelationCoefficient = euclideanDistanceHybridCharacteristicCorrelation.correlation(hybridEuclideanDistance, hybridCharacteristicValues);
 
-        System.out.println(minExpressionThreshold + ";" + minFoldChangeThreshold + ";pos" + inbredElementExpressionHashMap[0].size() + ";neg" + inbredElementExpressionHashMap[1].size() + ";" + binaryDistanceHybridCharacteristicCorrelation.getR() + ";" + euclideanDistanceHybridCharacteristicCorrelation.getR());
+        System.out.println(minExpressionThreshold + ";" + minFoldChangeThreshold + ";pos" + inbredElementExpressionHashMap[0].size() + ";neg" + inbredElementExpressionHashMap[1].size() + ";" + binaryDistanceCorrelationCoefficient + ";" + euclideanDistanceCorrelationCoefficient);
     }
     
     public void testClusters(DatabaseLoginData databaseLoginData, double minExpressionThreshold, double minFoldChangeThreshold, double alphaError) throws SQLException {
